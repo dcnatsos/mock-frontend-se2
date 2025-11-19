@@ -13,4 +13,20 @@ describe('Simple frontend smoke', () => {
     // Check that the output area exists with initial text
     cy.get('#out').should('be.visible').and('contain', '(click the button)');
   });
+
+  it('calls the backend and displays the response', () => {
+    // Visit root
+    cy.visit('/');
+
+    // Click the backend button
+    cy.get('#btn').click();
+
+    // Wait for the response and verify it's displayed
+    cy.get('#out')
+      .should('not.contain', '(click the button)')
+
+    // Verify the response contains expected backend data
+    cy.get('#out')
+      .should('contain', 'message') // Check for common JSON key
+  });
 });

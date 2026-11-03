@@ -22,7 +22,8 @@ describe('Simple frontend smoke', () => {
     cy.get('#btn').click();
 
     // Wait for the response and verify it's displayed
-    cy.get('#out')
+    // (long timeout: the Render free-tier backend may need ~60s to wake up)
+    cy.get('#out', { timeout: 90000 })
       .should('not.contain', '(click the button)')
 
     // Verify the response contains expected backend data

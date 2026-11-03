@@ -22,9 +22,13 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           start: npm start
-          wait-on: 'http://localhost:3000'
+          wait-on: 'http://127.0.0.1:3000'
+          wait-on-timeout: 180
         env:
           REACT_APP_BACKEND_URL: https://mock-backend-se2.onrender.com
+          BROWSER: none
+# Cypress here tests on the production backend, 
+# because the backend is deployed on Render and we don't have a CI job for the backend yet.
 
   cd:
     runs-on: ubuntu-latest

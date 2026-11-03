@@ -7,7 +7,6 @@ function App() {
 
   const handleClick = async () => {
     try {
-      console.log('Calling backend at', BACKEND_URL);
       const res = await fetch(BACKEND_URL + '/api/hello');
       const data = await res.json();
       setResponse(JSON.stringify(data, null, 2));
